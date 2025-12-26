@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Construction Services</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- nav bar icon insta facebbok etc -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+
+  <style>
+    :root{
+      --accent-1: linear-gradient(135deg,#FF8A00 0%,#E52E71 100%);
+      --accent-2: linear-gradient(135deg,#4facfe 0%,#00f2fe 100%);
+      --accent-3: linear-gradient(135deg,#7F00FF 0%,#E100FF 100%);
+      --accent-4: linear-gradient(135deg,#00C9FF 0%,#92FE9D 100%);
+      --card-radius: 18px;
+      --shadow-1: 0 6px 30px rgba(36,40,50,0.12);
+      --glow: 0 0 30px rgba(229,46,113,0.12);
+    }
+
+    /* Basic layout */
+    body { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:#eeeeee; color:#1f283a; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+    .navbar-brand img { width:44px; height:auto; margin-right:8px; }
+
+    /* Hero */
+    /* HERO SECTION */
+.hero-section {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  background: url("https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=1600&auto=format&fit=crop")
+              center/cover no-repeat;
+}
+
+/* Dark overlay for readability */
+.hero-section .overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+}
+
+/* Bring content above overlay */
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  padding: 6rem 0;
+}
+
+/* Right Image Floating Card */
+.hero-image-card {
+  background: #ffffff;
+  padding: 12px;
+  border-radius: 18px;
+  transform: translateY(15px);
+  transition: all 0.4s ease;
+}
+
+.hero-image-card img {
+  border-radius: 14px;
+}
+
+.hero-image-card:hover {
+  transform: translateY(5px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+}
+
+/* Fade Animations */
+.fade-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  animation: fadeLeft 1s ease-out forwards;
+}
+
+.fade-right {
+  opacity: 0;
+  transform: translateX(40px);
+  animation: fadeRight 1s ease-out forwards;
+}
+
+@keyframes fadeLeft {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeRight {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* MOBILE FIX */
+@media (max-width: 767px) {
+  .hero-section {
+    padding: 3rem 1rem;
+    text-align: center;
+  }
+}
+
+
+    /* Filters */
+    .filters { display:flex; gap:.5rem; flex-wrap:wrap; justify-content:center; margin-bottom:1.25rem; }
+    .filter-btn { border-radius:999px; padding:.45rem .9rem; border:1px solid transparent; background:#fff; box-shadow:var(--shadow-1); color:#0f172a; cursor:pointer; transition:all .18s; }
+    .filter-btn.active { background:linear-gradient(90deg,#654ea3,#eaafc8); color:#fff; box-shadow: 0 8px 30px rgba(99,102,241,0.15); transform:translateY(-2px); }
+
+    /* Grid */
+    .services-grid { margin-top:1rem; }
+
+    /* Style B: Gradient Modern Card */
+    .card-modern {
+      border: none;
+      border-radius: var(--card-radius);
+      overflow: visible;
+      position: relative;
+      padding: 1rem;
+      min-height: 220px;
+      color: #fff;
+      transition: transform .28s cubic-bezier(.2,.9,.2,1), box-shadow .28s;
+      cursor: pointer;
+      box-shadow: var(--shadow-1);
+      display:flex;
+      flex-direction:column;
+      justify-content:flex-end;
+      background: linear-gradient(135deg,#4facfe 0%,#00f2fe 100%); /* fallback, overridden per-card */
+    }
+
+    .card-modern::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:inherit;
+      opacity:.06;
+      pointer-events:none;
+    }
+
+    .card-modern .badge-icon {
+      position:absolute;
+      right:18px;
+      top:18px;
+      width:68px;
+      height:68px;
+      border-radius:14px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(3px);
+      box-shadow: 0 6px 18px rgba(2,6,23,0.12);
+    }
+    .card-modern .badge-icon i { font-size:1.6rem; color:#fff; }
+
+    .card-modern h5 { margin:0 0 .45rem 0; font-weight:700; font-size:1.05rem; color:#fff; text-shadow:0 2px 8px rgba(0,0,0,0.12);}
+    .card-modern p { margin:0; font-size:.92rem; color: rgba(255,255,255,0.92); opacity:0.95; }
+
+    /* floating thumbnail (optional) */
+    .card-modern .thumb {
+      position:absolute;
+      left:18px;
+      top:18px;
+      width:64px;
+      height:64px;
+      border-radius:12px;
+      overflow:hidden;
+      box-shadow: 0 8px 30px rgba(2,6,23,0.12);
+      border: 2px solid rgba(255,255,255,0.08);
+      background:rgba(255,255,255,0.06);
+    }
+    .card-modern .thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+
+    /* Hover effects */
+    .card-modern:hover {
+  transform: translateY(-6px) scale(1.05);  /* Smooth zoom */
+  box-shadow: 0 18px 45px rgba(2,6,23,0.18);
+  outline: 3px solid rgba(255,255,255,0.06);
+}
+
+
+    /* Clickable anchor overlay */
+    .card-link {
+      position:absolute; inset:0; z-index:3;
+    }
+
+    /* hidden / fade animation for filter */
+    .service-item { opacity:1; transform:none; transition: opacity .32s, transform .32s; }
+    .service-item.hide { opacity:0; transform:scale(.98); pointer-events:none; height:0; margin:0; padding:0; overflow:hidden; }
+
+    /* reveal animation on scroll */
+    .reveal { opacity:0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity:1; transform: none; }
+
+    /* responsive tweaks */
+    @media (max-width:767px){
+      .card-modern { min-height:200px; padding:1rem; }
+      .card-modern .badge-icon{ right:12px; top:12px; width:56px; height:56px; }
+      .card-modern .thumb { left:12px; top:12px; width:56px; height:56px; }
+    }
+    /* SOCIAL SIDEBAR */
+    /* SOCIAL SIDEBAR */
+.social-sidebar {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.social-sidebar a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: #fff;
+  color: #333;
+  border-radius: 0 24px 24px 0;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Icon colors */
+.social-sidebar a i.bi-instagram { color: #E1306C; }
+.social-sidebar a i.bi-facebook { color: #1877F2; }
+.social-sidebar a i.bi-twitter { color: #1DA1F2; }
+.social-sidebar a i.bi-youtube { color: #FF0000; }
+
+/* Hover effect */
+.social-sidebar a:hover {
+  transform: translateX(5px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  color: #fff;
+  background: #333; /* or gradient if you want */
+}
+/* Side Navbar */
+.side-nav {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #e0ded78d;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.2);
+  transition: 0.3s;
+  z-index: 1050;
+  padding-top: 60px;
+}
+
+.side-nav-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.side-nav-menu li {
+  margin: 20px 0;
+}
+
+.side-nav-menu li a {
+  text-decoration: none;
+  color: #000000;
+  font-weight: 700;
+  padding: 10px 20px;
+  display: block;
+  transition: 0.3s;
+  font-size: medium;
+}
+
+.side-nav-menu li a:hover {
+  background-color: #007bff; /* Change to any color you like */
+  color: #fff;
+  border-radius: 4px;
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  transition: 0.3s;
+  z-index: 1040;
+}
+
+/* Active Side Nav */
+.side-nav.active {
+  left: 0;
+}
+
+.overlay.active {
+  width: 100%;
+}
+/* heroooo scetion */
+.gradient-text {
+  background: linear-gradient(to right, #fdfd3f, #feb47b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 50px;
+}
+
+.text-light {
+  color: #ffffff !important;
+  font-weight: 700;
+}
+/* about section animation */
+/* Initial hidden state */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease-in-out;
+}
+
+/* When element becomes visible */
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Image slide from right */
+.slide-right {
+  opacity: 0;
+  transform: translateX(80px);
+  transition: all 1s ease-in-out;
+}
+
+.slide-right.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Text slide from left */
+.slide-left {
+  opacity: 0;
+  transform: translateX(-80px);
+  transition: all 1s ease-in-out;
+}
+
+.slide-left.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+
+/* ====================== REVEAL BASE ANIMATION ====================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease-in-out;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ====================== SLIDE FROM LEFT ====================== */
+.slide-left {
+  opacity: 0;
+  transform: translateX(-80px);
+  transition: all 1s ease-in-out;
+}
+
+.slide-left.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ====================== SLIDE FROM RIGHT ====================== */
+.slide-right {
+  opacity: 0;
+  transform: translateX(80px);
+  transition: all 1s ease-in-out;
+}
+
+.slide-right.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ====================== FOUNDER SECTION STYLING ====================== */
+
+#owner img {
+  max-width: 70%;
+  max-height: 70%;
+  border-radius: 20px;
+  transition: transform 1s ease, box-shadow 0.4s ease;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+#owner img:hover {
+  transform: scale(1.04);
+  box-shadow: 0px 12px 28px rgba(0, 0, 0, 0.25);
+}
+
+#owner h3 {
+  font-weight: 700;
+  color: #1a2a3b;
+}
+
+#owner p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #555;
+}
+
+#owner h2 {
+  font-size: 32px;
+  background: linear-gradient(to right, #1d3557, #457b9d);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Responsive fix */
+@media (max-width: 768px) {
+  #owner {
+    text-align: center;
+  }
+
+  #owner img {
+    margin-bottom: 20px;
+  }
+}
+/* contact front page color apply=====> */
+.hero-contact {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.hero-contact i {
+  font-size: 1.2rem;
+}
+
+.hero-contact span,
+.hero-contact i {
+  color:#fd653f;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+/* Footer Links Hover Effect */
+.footer-link {
+    display: block;
+    padding: 3px 0;
+    position: relative;
+    transition: 0.3s;
+    color: whitesmoke;
+    text-decoration: none;
+}
+.footer-link:hover {
+    color: #05f7ff !important;
+    padding-left: 8px;
+}
+.footer-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0%;
+    height: 2px;
+    background: #05f7ff;
+    transition: 0.3s;
+}
+.footer-link:hover::after {
+    width: 100%;
+    box-shadow: 0 0 8px #05f7ff;
+}
+
+/* Desktop View */
+@media (min-width: 992px) {
+    .footer-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+    .footer-col {
+        flex: 1;
+    }
+    .support-col {
+        text-align: center;
+    }
+    .qr-box {
+        text-align: right;
+    }
+}
+
+/* Mobile View */
+@media (max-width: 991px) {
+    .quick-links-col {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    .qr-box {
+        text-align: center;
+        margin-top: 10px;
+    }
+    .support-col {
+        text-align: center;
+        margin-top: 20px;
+    }
+}
+
+/* Footer Gradient Background */
+footer {
+    background: linear-gradient(135deg, #2b2929, #3a3535);
+}
+
+/* QR Code Hover Glow */
+.qr-box img {
+    transition: 0.3s ease-in-out;
+}
+.qr-box img:hover {
+    box-shadow: 0 0 20px #05f7ff, 0 0 40px #05f7ff inset;
+    transform: scale(1.05);
+}
+/* abou chatbot styling====================================> */
+/* Chatbot Toggle Button */
+/* Chatbot Toggle Button with Logo */
+.chatbot-toggle {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    z-index: 10000;
+      padding: 0;
+    background: none; /* background removed */
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    overflow: hidden;
+}
+.chatbot-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+.chatbot-toggle:hover .chatbot-logo {
+    transform: scale(1.1);
+}
+.chatbot-toggle:hover {
+    transform: scale(1.1);
+}
+
+/* Chatbot Window */
+.chatbot {
+    position: fixed;
+    bottom: 90px;
+    right: 25px;
+    width: 320px;
+    max-height: 420px;
+    background: #2b2929; /* dark background to match footer */
+    color: #f0f0f0;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 9999;
+}
+
+/* Header */
+.chatbot-header {
+    background: #FFCC00; /* gold header */
+    color: #2b2929; /* dark text */
+    padding: 12px;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Chat Messages */
+.chatbot-body {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-family: 'Arial', sans-serif;
+}
+
+.bot-message {
+    background: #f0f0f0; /* light grey bot message */
+    color: #2b2929;
+    padding: 8px;
+    border-radius: 8px;
+    align-self: flex-start;
+}
+
+.user-message {
+    background: #1877F2; /* blue user message */
+    color: #fff;
+    padding: 8px;
+    border-radius: 8px;
+    align-self: flex-end;
+}
+
+/* Input Field */
+.chatbot input {
+    border: none;
+    padding: 10px;
+    width: 100%;
+    outline: none;
+    border-top: 1px solid #FFCC00;
+    color: #2b2929;
+    background: #fff;
+}
+
+/* Scrollbar */
+.chatbot-body::-webkit-scrollbar {
+    width: 6px;
+}
+.chatbot-body::-webkit-scrollbar-thumb {
+    background-color: #FFCC00;
+    border-radius: 3px;
+}
+
+
+/* Responsive */
+@media (max-width: 480px) {
+    .chatbot {
+        width: 90%;
+        right: 5%;
+    }
+}
+
+
+
+
+
+
+</style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar navbar-light bg-white shadow-sm fixed-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center" href="#">
+      <img src="logo.jpeg.jpg" alt="logo" width="40" height="40">
+      <span class="text-dark fw-semibold ms-2">Little Odisha</span>
+    </a>
+
+    <!-- Hamburger Button -->
+    <button class="navbar-toggler" type="button" id="menu-btn">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Side Navbar -->
+    <div class="side-nav" id="side-nav">
+      <ul class="side-nav-menu">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+  </div>
+</nav>
+
+<!-- Chatbot Toggle Button -->
+<!-- Chatbot Toggle Button -->
+<button id="chatbot-toggle" class="chatbot-toggle">
+    <img src="chatbott.png" alt="Chatbot Logo" class="chatbot-logo">
+</button>
+
+
+
+<!-- Chatbot Window -->
+<div id="chatbot" class="chatbot">
+    <div class="chatbot-header">Chat with Littile Odisha Infra</div>
+    <div class="chatbot-body" id="chatbot-body">
+        <div class="bot-message">
+            Hi! I’m here to help you. Ask me anything about our services, plots, or contact details.
+        </div>
+    </div>
+    <input type="text" id="chatbot-input" placeholder="Type your message..." />
+</div>
+
+
+
+
+  <!-- LOGIN POPUP -->
+  <!-- INQUIRY POPUP (Replaces Login Modal) -->
+  <!-- ? -->
+  <div class="modal fade" id="loginModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0" style="border-radius:16px; overflow:hidden;">
+  
+        <!-- Header -->
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title">Inquiry Form</h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+  
+        <!-- Body -->
+        <div class="modal-body">
+  
+          <form action="https://getform.io/f/aqoqnnda" method="POST">
+  
+            <label class="form-label fw-bold mt-2">Your Name</label>
+            <input type="text" name="name" class="form-control" required>
+  
+            <label class="form-label fw-bold mt-2">Your Email</label>
+            <input type="email" name="email" class="form-control" required>
+  
+            <label class="form-label fw-bold mt-2">Your Message</label>
+            <textarea name="message" rows="4" class="form-control" required></textarea>
+  
+            <button type="submit" class="btn btn-primary w-100 mt-3">
+              Send Inquiry
+            </button>
+  
+          </form>
+  
+        </div>
+  
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+ <!-- HERO -->
+ <!-- HERO -->
+<!-- HERO (Image Left on Desktop, Perfect on Mobile) -->
+<section id="hero" class="hero-section">
+  <div class="overlay"></div>
+
+  <div class="container hero-inner">
+    <div class="row align-items-center flex-column-reverse flex-lg-row">
+
+      <!-- IMAGE (Left on Desktop, Top on Mobile) -->
+      <div class="col-lg-5 col-12 mb-4 mb-lg-0 fade-left text-center">
+        <div class="hero-image-card shadow-lg">
+          <img src="asian-two-business-man-construction-engineers-.webp"
+               alt="Construction"
+               class="img-fluid rounded">
+        </div>
+      </div>
+
+      <!-- TEXT (Right on Desktop, Centered on Mobile) -->
+      <div class="col-lg-7 col-12 fade-right text-lg-end text-center">
+
+        <h1 class="fw-bold display-5 display-lg-4 gradient-text">
+          We Build Your Dream Projects
+        </h1>
+
+        <p class="lead text-light mt-2 px-2">
+          Turnkey construction, renovation, waterproofing and society management —
+          delivered with care and craftsmanship.
+        </p>
+
+        <!-- CONTACT INFO -->
+        <div class="mt-3 text-center text-lg-end">
+
+          <div class="d-flex justify-content-center justify-content-lg-end align-items-center text-light mb-1">
+            <i class="bi bi-envelope-fill me-2" style="color:#b1e909;"></i>
+            <span style="color:#fbe30c;">littleodisha@gmail.com</span>
+          </div>
+
+          <div class="d-flex justify-content-center justify-content-lg-end align-items-center mb-1">
+            <i class="bi bi-whatsapp me-2" style="color:#00fa5c;"></i>
+            <span style="color:#fafafa;">+91 9876543210</span>
+          </div>
+
+          <div class="d-flex justify-content-center justify-content-lg-end align-items-center mb-1">
+            <i class="bi bi-telephone-fill me-2" style="color:#03f44b;"></i>
+            <span style="color:#ffffff;">+91 6371980227</span>
+          </div>
+
+          <div class="d-flex justify-content-center justify-content-lg-end align-items-center">
+            <i class="bi bi-telephone-fill me-2" style="color:#03f44b;"></i>
+            <span style="color:#ffffff;">+91 9337172947</span>
+          </div>
+
+        </div>
+
+        <!-- BUTTONS -->
+        <div class="mt-4 d-flex justify-content-center justify-content-lg-end">
+          <a href="#services" class="btn btn-lg btn-primary me-2">Our Services</a>
+          <a href="#contact" class="btn btn-outline-light">Contact Us</a>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+ <!-- ABOUT -->
+   <section id="about" class="py-5" 
+style="background: linear-gradient(to bottom, #e8f9f6, #b2f3ea);">
+  <div class="container">
+    <div class="text-center mb-4 reveal">
+      <h2 class="fw-bold slide-left">About Us</h2>
+      <p class="text-muted slide-right">13+ years building trusted relationships and quality structures.</p>
+    </div>
+
+    <div class="row align-items-center">
+      
+      <!-- TEXT LEFT SIDE -->
+      <div class="col-md-6 slide-left">
+        <p><b>Littile Odisha</b> is a full-service construction company offering a wide range of services — 
+        from structural construction to interior finishes, waterproofing, and housing society management. 
+        We focus on safety, quality and delivery.
+      <p>
+        Guided by safety, quality, and on-time delivery, our team blends technical expertise with modern construction practices. We focus on client satisfaction and long-term value, creating reliable and sustainable spaces that stand the test of time.<b>we create reliable, sustainable spaces that stand the test of time.</b>
+      </p>
+      </div>
+
+      <!-- IMAGE RIGHT SIDE -->
+      <div class="col-md-6 text-center slide-right">
+        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=800&auto=format&fit=crop" 
+             class="img-fluid rounded" alt="">
+      </div>
+
+    </div>
+  </div>
+</section>
+ 
+
+  <!-- SERVICES -->
+    <section id="services" class="py-5" 
+style="background: linear-gradient(to bottom, #e8f9f6, #b6fff5);">
+
+<div class="container">
+      <div class="text-center mb-4">
+        <h2 class="fw-bold">Our Services</h2>
+        <p class="text-muted">Select a category to filter or browse all services below.</p>
+      </div>
+
+      <!-- FILTERS -->
+      <div class="filters justify-content-center mb-4">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="construction">Construction</button>
+        <button class="filter-btn" data-filter="repair">Repair</button>
+        <button class="filter-btn" data-filter="interior">Interior</button>
+        <button class="filter-btn" data-filter="waterproofing">Waterproofing</button>
+        <button class="filter-btn" data-filter="management">Management</button>
+      </div>
+
+      <!-- GRID -->
+      <div class="row services-grid g-4">
+        <!-- Example service item -->
+       <!-- plot sale/flat sale services -->
+        <div class="col-6 col-md-4 col-lg-3 service-item reveal" data-category="construction">
+  <div class="card-modern" style="background:linear-gradient(135deg,#fc4a1a 0%,#f7b733 100%);">
+    <a class="card-link" href="#contact" aria-label="Plot Sale"></a>
+
+    <div class="thumb">
+      <img src="plot sale.jpeg" alt="Plot Sale">
+    </div>
+
+    <div class="badge-icon"><i class="bi bi-house-door"></i></div>
+
+    <div style="margin-top:88px; padding:0 6px 4px 6px;">
+      <h5>Plot Sale</h5>
+      <p class="small">Affordable plots & ready-to-move flats with trusted documentation.</p>
+    </div>
+  </div>
+</div>
+<!-- Land sale services-==========> -->
+ <div class="col-6 col-md-4 col-lg-3 service-item reveal" data-category="construction">
+  <div class="card-modern" style="background:linear-gradient(135deg,#00b09b 0%,#96c93d 100%);">
+    <a class="card-link" href="#contact" aria-label="Land Sale"></a>
+
+    <div class="thumb">
+      <img src="land sale.jpeg" alt="Land Sale">
+    </div>
+
+    <div class="badge-icon"><i class="bi bi-map"></i></div>
+
+    <div style="margin-top:88px; padding:0 6px 4px 6px;">
+      <h5>Land Sale</h5>
+      <p class="small">Verified residential & commercial land plots available with legal assistance.</p>
+    </div>
+  </div>
+</div>
+
+<div class="col-6 col-md-4 col-lg-3 service-item reveal" data-category="construction">
+          <div class="card-modern" style="background:var(--accent-2);">
+            <a class="card-link" href="#contact" aria-label="Building Construction"></a>
+
+            <div class="thumb"><img src="asian-two-business-man-construction-engineers-.webp" alt="building"></div>
+            <div class="badge-icon"><i class="bi bi-building"></i></div>
+
+            <div style="margin-top:88px; padding:0 6px 4px 6px;">
+              <h5>Building Construction</h5>
+              <p class="small">Turnkey residential & commercial construction with end-to-end project management.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3 service-item reveal" data-category="repair">
+          <div class="card-modern" style="background:var(--accent-1);">
+            <a class="card-link" href="#contact" aria-label="Renovation"></a>
+
+            <div class="thumb"><img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=600&auto=format&fit=crop" alt="renovation"></div>
+            <div class="badge-icon"><i class="bi bi-brush"></i></div>
+
+            <div style="margin-top:88px; padding:0 6px 4px 6px;">
+              <h5>Renovation & Remodeling</h5>
+              <p class="small">Kitchen, bathroom and full home remodels with premium finishing.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3 service-item reveal" data-category="construction">
+          <div class="card-modern" style="background:var(--accent-3);">
+            <a class="card-link" href="#contact" aria-label="Architecture"></a>
+
+            <div class="thumb"><img src="architecture.jpeg" alt="architecture"></div>
+            <div class="badge-icon"><i class="bi bi-rulers"></i></div>
+
+            <div style="margin-top:88px; padding:0 6px 4px 6px;">
+              <h5>Architecture & Planning</h5>
+              <p class="small">Concept to construction drawings and structural planning.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-3 service-item reveal" data-category="interior">
+          <div class="card-modern" style="background:linear-gradient(135deg,#FF9966 0%,#FF5E62 100%);">
+            <a class="card-link" href="#contact" aria-label="Painting"></a>
+
+            <div class="thumb"><img src="painting.jpeg" alt="painting"></div>
+            <div class="badge-icon"><i class="bi bi-paint-bucket"></i></div>
+
+            <div style="margin-top:88px; padding:0 6px 4px 6px;">
+              <h5>Painting Service</h5>
+              <p class="small">Interior & exterior painting with premium paints and finishes.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Flooring -->
+        <div class="col-6 col-md-4 col-lg-3 service-item reveal" data-category="interior">
+          <div class="card-modern" style="background:linear-gradient(135deg,#00d2ff 0%,#3a7bd5 100%);">
+            <a class="card-link" href="#contact" aria-label="Flooring"></a>
+
+            <div class="thumb"><img src="Commercial-and-Residential-Flooring-Companies-Near-Me.jpg" alt="flooring"></div>
+            <div class="badge-icon"><i class="bi bi-grid-1x2"></i></div>
+
+            <div style="margin-top:88px; padding:0 6px 4px 6px;">
+              <h5>Flooring Contractor</h5>
+              <p class="small">Tile, wooden, and marble flooring with precise installation.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Waterproofing -->
+        <div class="col-6 col-md-4 col-lg-3 service-item reveal" data-category="waterproofing">
+          <div class="card-modern" style="background:linear-gradient(135deg,#11998e 0%,#38ef7d 100%);">
+            <a class="card-link" href="#contact" aria-label="Waterproofing"></a>
+
+            <div class="thumb"><img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?q=80&w=600&auto=format&fit=crop" alt="waterproof"></div>
+            <div class="badge-icon"><i class="bi bi-droplet"></i></div>
+
+            <div style="margin-top:88px; padding:0 6px 4px 6px;">
+              <h5>Waterproofing Contractors</h5>
+              <p class="small">Basement, terrace and tank waterproofing systems & repairs.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Construction Contractor -->
+        <div class="col-6 col-md-4 col-lg-3 service-item reveal" data-category="construction">
+          <div class="card-modern" style="background:linear-gradient(135deg,#f7971e 0%,#ffd200 100%);">
+            <a class="card-link" href="#contact" aria-label="Construction Contractor"></a>
+
+            <div class="thumb"><img src="https://images.unsplash.com/photo-1590650046871-92c887180603?q=80&w=600&auto=format&fit=crop" alt="contractor"></div>
+            <div class="badge-icon"><i class="bi bi-hammer"></i></div>
+
+            <div style="margin-top:88px; padding:0 6px 4px 6px;">
+              <h5>Construction Contractor</h5>
+              <p class="small">Full site management, procurement and supervised construction.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Building Contractor -->
+        <div class="col-6 col-md-4 col-lg-3 service-item reveal" data-category="construction">
+          <div class="card-modern" style="background:linear-gradient(135deg,#6a11cb 0%,#2575fc 100%);">
+            <a class="card-link" href="#contact" aria-label="Building Contractor"></a>
+
+            <div class="thumb"><img src="building.jpeg" alt="building contractor"></div>
+            <div class="badge-icon"><i class="bi bi-tools"></i></div>
+
+            <div style="margin-top:88px; padding:0 6px 4px 6px;">
+              <h5>Building Contractor</h5>
+              <p class="small">Residential & commercial building specialists with quality control.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Housing Management -->
+        <div class="col-6 col-md-4 col-lg-3 service-item reveal" data-category="management">
+          <div class="card-modern" style="background:linear-gradient(135deg,#00c6ff 0%,#0072ff 100%);">
+            <a class="card-link" href="#contact" aria-label="Housing Society Management"></a>
+
+            <div class="thumb"><img src="management.jpeg" alt="management"></div>
+            <div class="badge-icon"><i class="bi bi-people"></i></div>
+
+            <div style="margin-top:88px; padding:0 6px 4px 6px;">
+              <h5>Housing Society Management</h5>
+              <p class="small">Maintenance, repairs and resident services for societies & complexes.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- False Ceiling -->
+        <div class="col-6 col-md-4 col-lg-3 service-item reveal" data-category="interior">
+          <div class="card-modern" style="background:linear-gradient(135deg,#ff5f6d 0%,#ffc371 100%);">
+            <a class="card-link" href="#contact" aria-label="False Ceiling Repair"></a>
+
+            <div class="thumb"><img src="https://images.unsplash.com/photo-1599427303058-f04cbcf4756f?q=80&w=600&auto=format&fit=crop" alt="ceiling"></div>
+            <div class="badge-icon"><i class="bi bi-window"></i></div>
+
+            <div style="margin-top:88px; padding:0 6px 4px 6px;">
+              <h5>False Ceiling Repair</h5>
+              <p class="small">Gypsum, POP and tile ceiling works & repair services.</p>
+            </div>
+          </div>
+        </div>
+ 
+
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ====================== FOUNDER / OWNER SECTION ====================== -->
+<section id="owner" class="py-5"
+style="background: linear-gradient(to bottom, #e8f1f8, #c9deef);">
+  <div class="container">
+
+    <!-- Section Title -->
+    <div class="text-center mb-4 reveal">
+      <h2 class="fw-bold slide-left">Our Founder</h2>
+      <p class="text-muted slide-right">The vision, dedication, and leadership behind our success.</p>
+    </div>
+
+    <div class="row align-items-center">
+
+      <!-- LEFT IMAGE (Slide from Left) -->
+      <div class="col-md-5 text-center slide-left">
+        <img src="founder.jpg"
+             class="img-fluid rounded shadow-lg"
+             alt="Founder Image">
+      </div>
+
+      <!-- RIGHT TEXT (Slide from Right) -->
+      <div class="col-md-7 slide-right">
+        <h3 class="fw-bold mb-3">Mr. Bhaskar Sahoo</h3>
+
+        <p class="text-muted">
+          With a strong vision for modern infrastructure development and transparent land services,<b> Mr.Bhaskar Sahoo</b> established Littile Odisha to deliver trustworthy and high-quality construction solutions. With over 15+ years of experience in residential construction With strong values and a focus on quality. 
+        </p>
+
+        <p class="text-muted">
+          His leadership has transformed <b>Littile Odisha</b> into a trusted construction
+          service provider.With strong values and a commitment to quality, he has guided the company toward excellence in both development and customer service.
+        </p>
+
+        <p class="text-muted">
+          His belief is simple —
+
+<b>“Good construction is built on trust. Good land service is built on transparency.”</b>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+  <!-- CONTACT -->
+  <section id="contact" class="py-5">
+    <div class="container">
+      <div class="text-center mb-4">
+        <h2 class="fw-bold">Contact Us</h2>
+        <p class="text-muted">Get a quote or schedule a site visit.</p>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-7">
+          <form id="contactForm">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <input class="form-control" placeholder="Your name" required>
+              </div>
+              <div class="col-md-6">
+                <input type="email" class="form-control" placeholder="Email address" required>
+              </div>
+              <div class="col-12">
+                <textarea class="form-control" rows="4" placeholder="How can we help?" required></textarea>
+              </div>
+              <div class="col-12 text-end">
+                <button class="btn btn-primary">Send Message</button>
+              </div>
+            </div>
+          </form>
+          <p id="responseMsg" class="text-success mt-3" style="display:none;">✔ Message sent successfully!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <!-- FOOTER -->
+  <!-- FOOTER -->
+<footer style="background:#2b2929; color: whitesmoke;" class="py-5">
+  <div class="container">
+
+    <div class="footer-row">
+
+      <!-- Brand & Address -->
+      <div class="footer-col col-md-4 mb-4">
+        <h5 class="fw-bold">Littile Odisha Construction</h5>
+        <p class="mb-1">Providing quality construction with trust and care.</p>
+        <small>
+          Plot No.1189, 1st Floor, Jaganath Sadak, Gudia Pokhari,<br>
+          Bhubaneswar, Odisha – 752104<br>
+          Phone: +91 6371980227<br>
+          Email: littileodishainfra@gmail.com
+        </small>
+      </div>
+
+      <!-- Quick Links + QR (Mobile Friendly) -->
+      <div class="footer-col col-md-4 mb-4 mobile-flex text-center">
+        <!-- Quick Links -->
+        <div class="quick-links-col mb-3">
+          <h6 class="fw-bold">Quick Links</h6>
+          <ul class="list-unstyled">
+            <li><a href="#hero" class="footer-link">Home</a></li>
+            <li><a href="#about" class="footer-link">About Us</a></li>
+            <li><a href="#services" class="footer-link">Services</a></li>
+            <li><a href="#contact" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- QR Code -->
+        <div class="qr-box">
+          <h6 class="fw-bold mb-2">Secure Payment</h6>
+          <img src="qrscann.jpg" alt="QR Code" style="width:130px; border-radius:10px;">
+          <small class="d-block mt-2">Scan to Pay</small>
+        </div>
+      </div>
+
+      <!-- Support -->
+      <div class="footer-col col-md-2 mb-4 support-col">
+        <h6 class="fw-bold">Support</h6>
+        <ul class="list-unstyled">
+          <li><a href="#" class="footer-link">FAQ</a></li>
+          <li><a href="#" class="footer-link">Privacy Policy</a></li>
+          <li><a href="#" class="footer-link">Terms & Conditions</a></li>
+          <li><a href="#" class="footer-link">Help Center</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <hr style="opacity:0.2;">
+
+    <!-- Bottom Copyright -->
+    <div class="text-center mt-3">
+      <small>© 2025 Littile Odisha. All Rights Reserved.</small>
+    </div>
+
+  </div>
+</footer>
+
+
+
+  <!-- side cocial bar -->
+   <!-- SIDE SOCIAL BAR -->
+<div class="social-sidebar">
+  <a href="https://m.me/" target="_blank" class="facebook d-flex align-items-center text-decoration-none">
+         <i class="bi bi-messenger" style="color:#0084FF; font-size:20px;"></i>
+    </a>
+  <a href="https://www.instagram.com/littleodisha00/?utm_source=qr#" target="_blank" class="instagram">
+    <i class="bi bi-instagram"></i>
+  </a>
+
+  <a href="https://www.facebook.com/profile.php?id=61584274543255" target="_blank" class="facebook">
+    <i class="bi bi-facebook"></i>
+  </a>
+
+  <a href="https://x.com/InfraLitil27826?s=20" target="_blank" class="twitter">
+    <i class="bi bi-twitter"></i>
+  </a>
+
+  <a href="https://wa.me/YOUR_NUMBER" target="_blank" class="whatsapp">
+    <i class="bi bi-whatsapp"></i>
+  </a>
+  <a href="https://youtube.com/@littleodishainfra?si=DxjBk1IhGZ2QIu_S" target="_blank" class="whatsapp">
+    <i class="bi bi-youtube"></i>
+  </a>
+</div>
+
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Auto show login modal on load
+    window.addEventListener('load', function(){
+      const modalEl = document.getElementById('loginModal');
+      const modal = new bootstrap.Modal(modalEl);
+      modal.show();
+    });
+
+    // Contact form success message
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      document.getElementById('responseMsg').style.display = 'block';
+      this.reset();
+    });
+
+    // FILTERS
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const serviceItems = document.querySelectorAll('.service-item');
+
+    filterButtons.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        filterButtons.forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+        serviceItems.forEach(item=>{
+          const cat = item.dataset.category;
+          if(filter === 'all' || filter === cat) {
+            item.classList.remove('hide');
+          } else {
+            item.classList.add('hide');
+          }
+        });
+      });
+    });
+
+    // Reveal on scroll - IntersectionObserver
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {threshold: 0.12});
+
+    document.querySelectorAll('.reveal').forEach(el=>{
+      io.observe(el);
+    });
+
+    // Make whole card clickable & keyboard accessible (cards already have anchor overlay, but add keyboard enter)
+    document.querySelectorAll('.card-link').forEach(link=>{
+      link.addEventListener('keydown', (e)=>{
+        if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); link.click(); }
+      });
+    });
+
+    // Optional: smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', function(e){
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target){
+          e.preventDefault();
+          target.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      });
+    });
+
+
+
+
+    const menuBtn = document.getElementById("menu-btn");
+  const sideNav = document.getElementById("side-nav");
+  const overlay = document.getElementById("overlay");
+
+  menuBtn.addEventListener("click", () => {
+    sideNav.classList.toggle("active");
+    overlay.classList.toggle("active");
+  });
+
+  overlay.addEventListener("click", () => {
+    sideNav.classList.remove("active");
+    overlay.classList.remove("active");
+  });
+
+//   about section animation===========>
+ const reveals = document.querySelectorAll(".reveal, .slide-left, .slide-right");
+
+  function revealOnScroll() {
+    reveals.forEach((el) => {
+      let windowHeight = window.innerHeight;
+      let elementTop = el.getBoundingClientRect().top;
+      let elementVisible = 120;
+
+      if (elementTop < windowHeight - elementVisible) {
+        el.classList.add("active");
+      }
+    });
+  }
+
+  window.addEventListener("scroll", revealOnScroll);
+  revealOnScroll();
+
+  //honour animation ====================>
+  function revealOnScroll() {
+    const elements = document.querySelectorAll('.reveal, .slide-left, .slide-right');
+
+    elements.forEach(el => {
+      const position = el.getBoundingClientRect().top;
+      const screenHeight = window.innerHeight;
+
+      if (position < screenHeight - 120) {
+        el.classList.add('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', revealOnScroll);
+  window.addEventListener('load', revealOnScroll);
+
+
+  // about chahtbot functionaity==========================================>
+  const chatbotToggle = document.getElementById("chatbot-toggle");
+const chatbot = document.getElementById("chatbot");
+const chatbotBody = document.getElementById("chatbot-body");
+const chatbotInput = document.getElementById("chatbot-input");
+
+// Toggle chatbot window
+chatbotToggle.addEventListener("click", () => {
+    chatbot.style.display = chatbot.style.display === "flex" ? "none" : "flex";
+});
+
+// Predefined keywords and helpful replies
+const answers = [
+    // Services
+    {keywords: ["service","services","work","construction","building","project","infrastructure","civil","renovation","interior","exterior","painting","plumbing","electrical"], reply: "We provide quality construction services including land plot sale, building, renovation, and infrastructure development."},
+
+    // Land / Plot
+    {keywords: ["plot","land","land sale","plot sale","property","real estate","site","buy plot","sell plot","plot prices"], reply: "We have land plots available for sale. Please contact us for more details."},
+
+    // Office / Address
+    {keywords: ["address","location","office","office address","where","visit","direction","map","bhubaneswar","odisha"], reply: "Our office is at Plot No.1189, 1st Floor, Jaganath Sadak, Gudia Pokhari, Bhubaneswar, Odisha – 752104."},
+
+    // Contact Info
+    {keywords: ["phone","mobile","contact number","call"], reply: "You can call us at +91 6371980227."},
+    {keywords: ["email","mail"], reply: "Email us at littileodishainfra@gmail.com."},
+
+    // Payment / QR
+    {keywords: ["payment","qr","scan","secure payment","pay","payment options","how to pay"], reply: "You can pay securely by scanning the QR code in our footer."},
+
+    // Company / About
+    {keywords: ["company","littile odisha construction","littile odisha infra","trusted","quality","trust"], reply: "We are Littile Odisha Construction – providing quality construction with trust and care."},
+
+    // Greetings / Polite Words
+    {keywords: ["hello","hi","hey","good morning","good afternoon","good evening","good night"], reply: "Hello! same to you dear,How can I help you today?"},
+    {keywords: ["thanks","thank you"], reply: "You’re welcome! Let me know if you have any more questions."}
+];
+
+// Handle user input
+chatbotInput.addEventListener("keypress", function(e) {
+    if (e.key === "Enter" && chatbotInput.value.trim() !== "") {
+        const userMsg = chatbotInput.value.trim();
+        
+        // Display user message
+        const userDiv = document.createElement("div");
+        userDiv.className = "user-message";
+        userDiv.innerText = userMsg;
+        chatbotBody.appendChild(userDiv);
+        chatbotInput.value = "";
+        chatbotBody.scrollTop = chatbotBody.scrollHeight;
+
+        // Generate bot reply
+        setTimeout(() => {
+            let botReply = "Sorry, I didn’t understand that. You can ask about our services, plots, address, phone, email, or payment.";
+            for (let ans of answers) {
+                for (let key of ans.keywords) {
+                    if (userMsg.toLowerCase().includes(key)) {
+                        botReply = ans.reply;
+                        break;
+                    }
+                }
+            }
+
+            const botDiv = document.createElement("div");
+            botDiv.className = "bot-message";
+            botDiv.innerText = botReply;
+            chatbotBody.appendChild(botDiv);
+            chatbotBody.scrollTop = chatbotBody.scrollHeight;
+        }, 700);
+    }
+});
+    
+  </script>
+
+</body>
+</html>
